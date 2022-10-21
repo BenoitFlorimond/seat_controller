@@ -1,8 +1,7 @@
-# ESP32 project template
+# Seat controller
 ## Overview
-This is a template project to easily start a new project on ESP32.
-This template is based on esp-idf version 4.2.2 which is the latest stable version to this day.
->***This section need to be updated when starting a new project***
+This project is intended to control the position of a gaming seat. Two motors can move the seat.
+An ESP32 receive orders by wifi ap and control both motors to reach the position requested.
 ## Prerequisites
  - [VSCode](https://code.visualstudio.com/download)
  - Recommended VSCode extensions are specified in `.vscode/.estensions.json` file. They will be automatically proposed by VS Code.
