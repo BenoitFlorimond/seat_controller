@@ -1,0 +1,5 @@
+{
+    "git.detectSubmodules": true,
+    "git.detectSubmodulesLimit": 50,
+    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Webkit, AlignConsecutiveMacros: AcrossEmptyLinesAndComments, AlignConsecutiveBitFields: AcrossEmptyLinesAndComments, AlignTrailingComments: true, AlignConsecutiveAssignments: AcrossEmptyLinesAndComments}",
+}

@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "cschlosser.doxdocgen",
+        "ms-vscode.cpptools",
+        "guyutongxue.cpp-reference",
+        "ms-vscode.vscode-embedded-tools"
+    ]
+}
