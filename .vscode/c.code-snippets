@@ -10,15 +10,26 @@
             "*/\n",
             "/* Documentation *************************************************************/\n",
             "/* Includes ******************************************************************/\n",
-            "#include \"$TM_FILENAME_BASE.h\"\n",
+            "#include \"$TM_FILENAME_BASE.h\"",
+            "#include \"freertos_includes.h\"\n",
             "/* Private Defines & Macros **************************************************/\n",
+            "#define TASK_TAG \t\t\t (\"${1:TAG}\")",
+            "#define TASK_STACK_SIZE \t (2048)",
+            "#define TASK_PRIO \t\t\t (4)\n",
             "/* Private types definition **************************************************/\n",
             "/* Private variables *********************************************************/\n",
             "/* Private prototypes ********************************************************/\n",
+            "static void _process(void * priv);\n",
             "/* Private Functions *********************************************************/\n",
+            "static void _process(void * priv)\n{",
+            "\tOSUTILS_waitSystemStartup();\n",
+            "\tfor (;;) {\n\t\n\t}\n}",
             "/* Public Functions **********************************************************/\n",
-            "void ${0:TAG}_init(void)\n{\n\t\n}\n",
-            "void ${0:TAG}_process(void)\n{\n\t\n}\n",
+            "esp_err_t ${1:TAG}${2:LVL}_init(void)\n{",
+            "\tif (xTaskCreate(_process, TASK_TAG, TASK_STACK_SIZE, NULL, TASK_PRIO, NULL) != pdPASS) {",
+            "\t\treturn ESP_ERR_NO_MEM;",
+            "\t}",
+            "}"
         ]
     },
     "Header file sections": {
@@ -34,12 +45,13 @@
             "#define __${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H__\n",
             "/* Documentation *************************************************************/\n",
             "/* Includes ******************************************************************/\n",
+            "#include <esp_err.h>\n",
             "/* Public Defines & Macros ***************************************************/\n",
             "/* Public types definition ***************************************************/\n",
             "/* Public prototypes *********************************************************/\n",
-            "void ${0:TAG}_init(void);\n",
-            "void ${0:TAG}_process(void);\n",
+            "esp_err_t ${0:TAG}_init(void);\n",
             "#endif /* __${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H__ */"
         ]
-    }
+    },
+
 }

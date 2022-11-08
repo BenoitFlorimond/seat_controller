@@ -22,6 +22,12 @@
         "xutility": "c",
         "*.ipp": "c",
         "*.inc": "c",
-        "*.def": "c"
+        "*.def": "c",
+        "stdlib.h": "c",
+        "leds_driver.h": "c",
+        "i2c_types.h": "c",
+        "i2c.h": "c",
+        "esp_intr_alloc.h": "c",
+        "accelerometer_driver.h": "c"
     },
 }

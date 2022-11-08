@@ -1,7 +1,12 @@
 idf_component_register( SRCS            "main.c" 
+                                        "app/src/position_app.c"
                                         "../fwk/utils/src/os_utils.c"
                                         "../fwk/drivers/src/buttons_driver.c"
                                         "../fwk/drivers/src/leds_driver.c"
+                                        "../fwk/drivers/src/accelerometer_driver.c"
+                                        "../fwk/hil/src/lis2dw12_hil.c"
                         INCLUDE_DIRS    "inc"
+                                        "app/inc"
                                         "../fwk/utils/inc"
-                                        "../fwk/drivers/inc")
+                                        "../fwk/drivers/inc"
+                                        "../fwk/hil/inc")

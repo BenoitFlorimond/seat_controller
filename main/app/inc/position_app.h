@@ -1,15 +1,17 @@
 /**
 * ****************************************************************************
-* acc_driver.h
+* position_app.h
 * ****************************************************************************
 */
 
-#ifndef __ACC_DRIVER_H__
-#define __ACC_DRIVER_H__
+#ifndef __POSITION_APP_H__
+#define __POSITION_APP_H__
 
 /* Documentation *************************************************************/
 
 /* Includes ******************************************************************/
+
+#include <esp_err.h>
 
 /* Public Defines & Macros ***************************************************/
 
@@ -17,8 +19,6 @@
 
 /* Public prototypes *********************************************************/
 
-void ACCDRV_init(void);
+esp_err_t POSAPP_init(void);
 
-void ACCDRV_process(void);
-
-#endif /* __ACC_DRIVER_H__ */
+#endif /* __POSITION_APP_H__ */

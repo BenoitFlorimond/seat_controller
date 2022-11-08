@@ -1,2 +1,2 @@
-idf_component_register( SRCS            "src/acc_driver.c"
-                        INCLUDE_DIRS    "inc/")
+#idf_component_register( SRCS            ".c"
+#                        INCLUDE_DIRS    "inc/")
