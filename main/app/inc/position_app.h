@@ -21,4 +21,6 @@
 
 esp_err_t POSAPP_init(void);
 
+void POSAPP_getOrientation(float * pitch, float * roll);
+
 #endif /* __POSITION_APP_H__ */

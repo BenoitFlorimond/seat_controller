@@ -1,7 +1,7 @@
 {
     "git.detectSubmodules": true,
     "git.detectSubmodulesLimit": 50,
-    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Webkit, AlignConsecutiveMacros: AcrossEmptyLinesAndComments, AlignConsecutiveBitFields: AcrossEmptyLinesAndComments, AlignTrailingComments: true, AlignConsecutiveAssignments: AcrossEmptyLinesAndComments}",
+    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Webkit, AlignConsecutiveMacros: AcrossEmptyLinesAndComments, AlignConsecutiveBitFields: AcrossEmptyLinesAndComments, AlignTrailingComments: true, AlignConsecutiveAssignments: AcrossComments}",
     "files.associations": {
         "stdio.h": "c",
         "gpio.h": "c",
