@@ -1,17 +1,28 @@
 {
     "version": "2.0.0",
-    "options": {
-        "cwd": "${workspaceRoot}",
-        "env": {
-            "IDF_PATH": "${workspaceRoot}/esp-idf",
-            "PATH": "${workspaceRoot}/esp-idf/tools;${workspaceRoot}/tools/cmake/3.24.0/bin;${workspaceRoot}/tools/ninja/1.10.2;${workspaceRoot}/tools/openocd-esp32/bin;${workspaceRoot}/tools/toolchain/windows/xtensa-esp32-elf/bin;${env:PATH}"
-        }
+    "windows": {
+        "options": {
+            "cwd": "${workspaceRoot}",
+            "env": {
+                "IDF_PATH": "${workspaceRoot}/esp-idf",
+                "PATH": "${workspaceRoot}/esp-idf/tools;${workspaceRoot}/tools/windows/cmake/3.24.0/bin;${workspaceRoot}/tools/windows/ninja/1.10.2;${workspaceRoot}/tools/windows/openocd-esp32/bin;${workspaceRoot}/tools/windows/xtensa-esp32-elf/bin;${env:PATH}"
+            }
+        },
+    },
+    "linux": {
+        "options": {
+            "cwd": "${workspaceRoot}",
+            "env": {
+                "IDF_PATH": "${workspaceRoot}/esp-idf",
+                "PATH": "${workspaceRoot}/esp-idf/tools;${workspaceRoot}/tools/linux/cmake/3.25.0/bin;${workspaceRoot}/tools/linux/ninja/1.11.1;${workspaceRoot}/tools/linux/openocd-esp32/bin;${workspaceRoot}/tools/linux/xtensa-esp32-elf/bin;${env:PATH}"
+            }
+        },
     },
     "tasks": [
         {
             "label": "Build",
             "type": "shell",
-            "command": "python ./esp-idf/tools/idf.py build",
+            "command": "idf.py build",
             "problemMatcher": [
                 "$gcc"
             ],
@@ -23,7 +34,7 @@
         {
             "label": "Clean",
             "type": "shell",
-            "command": "python ./esp-idf/tools/idf.py clean",
+            "command": "idf.py clean",
             "problemMatcher": [
                 "$gcc"
             ]
@@ -31,7 +42,7 @@
         {
             "label": "Clean all",
             "type": "shell",
-            "command": "python ./esp-idf/tools/idf.py fullclean",
+            "command": "idf.py fullclean",
             "problemMatcher": [
                 "$gcc"
             ]
@@ -39,7 +50,7 @@
         {
             "label": "Flash",
             "type": "shell",
-            "command": "python ./esp-idf/tools/idf.py flash",
+            "command": "idf.py flash",
             "problemMatcher": [
                 "$gcc"
             ]
@@ -47,26 +58,26 @@
         {
             "label": "Monitor",
             "type": "shell",
-            "command": "python ./esp-idf/tools/idf.py monitor",
+            "command": "idf.py monitor",
             "problemMatcher": []
         },
         {
             "label": "Size",
             "type": "shell",
-            "command": "python ./esp-idf/tools/idf_size.py ./build/zpce_embedded_cb_keyboard.map",
+            "command": "idf_size.py ./build/zpce_embedded_cb_keyboard.map",
             "problemMatcher": [],
             "dependsOn": "Build"
         },
         {
             "label": "Erase",
             "type": "shell",
-            "command": "python ./esp-idf/tools/idf.py erase_flash",
+            "command": "idf.py erase_flash",
             "problemMatcher": []
         },
         {
             "label": "Menu config",
             "type": "shell",
-            "command": "start python ./esp-idf/tools/idf.py menuconfig",
+            "command": "start idf.py menuconfig",
             "problemMatcher": []
         },
         {
