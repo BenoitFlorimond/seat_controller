@@ -8,7 +8,8 @@
             "${workspaceFolder}/main/drivers/inc",
             "${workspaceFolder}/fwk/utils/inc",
             "${workspaceFolder}/fwk/drivers/inc",
-            "${workspaceFolder}/fwk/hil/inc"
+            "${workspaceFolder}/fwk/hil/inc",
+            "${workspaceFolder}/fwk/apis/inc"
         ],
         "myDefines":[
             "_DEBUG",
