@@ -28,6 +28,7 @@
         "i2c_types.h": "c",
         "i2c.h": "c",
         "esp_intr_alloc.h": "c",
-        "accelerometer_driver.h": "c"
+        "accelerometer_driver.h": "c",
+        "brushed_motor_driver.h": "c"
     },
 }
