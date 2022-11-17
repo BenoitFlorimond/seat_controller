@@ -14,7 +14,7 @@
             "cwd": "${workspaceRoot}",
             "env": {
                 "IDF_PATH": "${workspaceRoot}/esp-idf",
-                "PATH": "${workspaceRoot}/esp-idf/tools;${workspaceRoot}/tools/linux/cmake/3.25.0/bin;${workspaceRoot}/tools/linux/ninja/1.11.1;${workspaceRoot}/tools/linux/openocd-esp32/bin;${workspaceRoot}/tools/linux/xtensa-esp32-elf/bin;${env:PATH}"
+                "PATH": "${workspaceRoot}/esp-idf/tools:${workspaceRoot}/tools/linux/cmake/3.25.0/bin:${workspaceRoot}/tools/linux/ninja/1.11.1:${workspaceRoot}/tools/linux/openocd-esp32/bin:${workspaceRoot}/tools/linux/xtensa-esp32-elf/bin:${env:PATH}"
             }
         },
     },
@@ -22,7 +22,12 @@
         {
             "label": "Build",
             "type": "shell",
-            "command": "idf.py build",
+            "windows":{
+                "command": "idf.py build",
+            },
+            "linux":{
+                "command": "docker run --rm -v ${workspaceRoot}:/project -w /project espressif/idf:v4.4.2 idf.py build",
+            },
             "problemMatcher": [
                 "$gcc"
             ],
