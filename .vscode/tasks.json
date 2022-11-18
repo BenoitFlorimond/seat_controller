@@ -22,12 +22,7 @@
         {
             "label": "Build",
             "type": "shell",
-            "windows":{
-                "command": "idf.py build",
-            },
-            "linux":{
-                "command": "docker run --rm -v ${workspaceRoot}:/project -w /project espressif/idf:v4.4.2 idf.py build",
-            },
+            "command": "idf.py build",
             "problemMatcher": [
                 "$gcc"
             ],
@@ -90,6 +85,18 @@
             "type": "shell",
             "command": "python -m pip install --user -r ./esp-idf/requirements.txt",
             "problemMatcher": []
+        },
+        {
+            "label": "Docker - Build",
+            "type": "shell",
+            "command": "docker run --rm -v ${workspaceRoot}:/project -w /project espressif/idf:v4.4.2 idf.py build",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         },
     ]
 }
