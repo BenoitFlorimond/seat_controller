@@ -14,15 +14,41 @@
             "cwd": "${workspaceRoot}",
             "env": {
                 "IDF_PATH": "${workspaceRoot}/esp-idf",
-                "PATH": "${workspaceRoot}/esp-idf/tools;${workspaceRoot}/tools/linux/cmake/3.25.0/bin;${workspaceRoot}/tools/linux/ninja/1.11.1;${workspaceRoot}/tools/linux/openocd-esp32/bin;${workspaceRoot}/tools/linux/xtensa-esp32-elf/bin;${env:PATH}"
+                "PATH": "${env:PATH}"
             }
         },
     },
     "tasks": [
         {
+            "label": "Setup project",
+            "type": "shell",
+            "windows":{
+                "command": "setup_project.bat"
+            },
+            "linux":{
+                "command" : "source",
+                "args": ["${workspaceRoot}/setup_project.sh"]
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
             "label": "Build",
             "type": "shell",
-            "command": "idf.py build",
+            "windows":{
+                "command": "idf.py build",
+            },
+            "linux":{
+                "command": "source",
+                "args": [
+                    "${workspaceRoot}/activate_env.sh",
+                    "&&",
+                    "python",
+                    "${IDF_PATH}/tools/idf.py",
+                    "build"
+                ]
+            },
             "problemMatcher": [
                 "$gcc"
             ],
@@ -34,7 +60,19 @@
         {
             "label": "Clean",
             "type": "shell",
-            "command": "idf.py clean",
+            "windows":{
+                "command": "idf.py clean",
+            },
+            "linux":{
+                "command": "source",
+                "args": [
+                    "${workspaceRoot}/activate_env.sh",
+                    "&&",
+                    "python",
+                    "${IDF_PATH}/tools/idf.py",
+                    "clean"
+                ]
+            },
             "problemMatcher": [
                 "$gcc"
             ]
@@ -42,7 +80,19 @@
         {
             "label": "Clean all",
             "type": "shell",
-            "command": "idf.py fullclean",
+            "windows":{
+                "command": "idf.py fullclean",
+            },
+            "linux":{
+                "command": "source",
+                "args": [
+                    "${workspaceRoot}/activate_env.sh",
+                    "&&",
+                    "python",
+                    "${IDF_PATH}/tools/idf.py",
+                    "fullclean"
+                ]
+            },
             "problemMatcher": [
                 "$gcc"
             ]
@@ -50,7 +100,19 @@
         {
             "label": "Flash",
             "type": "shell",
-            "command": "idf.py flash",
+            "windows":{
+                "command": "idf.py flash",
+            },
+            "linux":{
+                "command": "source",
+                "args": [
+                    "${workspaceRoot}/activate_env.sh",
+                    "&&",
+                    "python",
+                    "${IDF_PATH}/tools/idf.py",
+                    "flash"
+                ]
+            },
             "problemMatcher": [
                 "$gcc"
             ]
@@ -58,33 +120,75 @@
         {
             "label": "Monitor",
             "type": "shell",
-            "command": "idf.py monitor",
+            "windows":{
+                "command": "idf.py monitor",
+            },
+            "linux":{
+                "command": "source",
+                "args": [
+                    "${workspaceRoot}/activate_env.sh",
+                    "&&",
+                    "python",
+                    "${IDF_PATH}/tools/idf.py",
+                    "monitor"
+                ]
+            },
             "problemMatcher": []
         },
         {
             "label": "Size",
             "type": "shell",
-            "command": "idf_size.py ./build/zpce_embedded_cb_keyboard.map",
+            "windows":{
+                "command": "idf_size.py ./build/*.map",
+            },
+            "linux":{
+                "command": "source",
+                "args": [
+                    "${workspaceRoot}/activate_env.sh",
+                    "&&",
+                    "python",
+                    "${IDF_PATH}/tools/idf_size.py",
+                    "./build/*.map"
+                ]
+            },
             "problemMatcher": [],
             "dependsOn": "Build"
         },
         {
             "label": "Erase",
             "type": "shell",
-            "command": "idf.py erase_flash",
+            "windows":{
+                "command": "idf.py erase_flash",
+            },
+            "linux":{
+                "command": "source",
+                "args": [
+                    "${workspaceRoot}/activate_env.sh",
+                    "&&",
+                    "python",
+                    "${IDF_PATH}/tools/idf.py",
+                    "erase_flash"
+                ]
+            },
             "problemMatcher": []
         },
         {
             "label": "Menu config",
             "type": "shell",
-            "command": "start idf.py menuconfig",
+            "windows":{
+                "command": "start idf.py menuconfig",
+            },
+            "linux":{
+                "command": "source",
+                "args": [
+                    "${workspaceRoot}/activate_env.sh",
+                    "&&",
+                    "python",
+                    "${IDF_PATH}/tools/idf.py",
+                    "menuconfig"
+                ]
+            },
             "problemMatcher": []
-        },
-        {
-            "label": "Run requirements",
-            "type": "shell",
-            "command": "python -m pip install --user -r ./esp-idf/requirements.txt",
-            "problemMatcher": []
-        },
+        }
     ]
 }
