@@ -43,7 +43,7 @@
             "defines": [
                 "${myDefines}"
             ],
-            "compilerPath": "${workspaceFolder}/tools/linux/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc.exe",
+            "compilerPath": "${workspaceFolder}/tools/linux/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc",
             "compileCommands": "/build/compile_commands.json"
         }
     ],
