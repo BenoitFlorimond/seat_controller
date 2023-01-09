@@ -5,4 +5,4 @@ cmake_minimum_required(VERSION 3.5)
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 
 set(EXTRA_COMPONENT_DIRS "main" "main/app" "main/drivers" "main/utils")
-project(template_esp32)
+project(seat_controller)
