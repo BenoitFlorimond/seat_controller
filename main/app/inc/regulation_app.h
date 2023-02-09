@@ -1,11 +1,11 @@
 /**
-* ****************************************************************************
-* position_app.h
-* ****************************************************************************
-*/
+ * ****************************************************************************
+ * regulation_app.h
+ * ****************************************************************************
+ */
 
-#ifndef __POSITION_APP_H__
-#define __POSITION_APP_H__
+#ifndef __REGULATION_APP_H__
+#define __REGULATION_APP_H__
 
 /* Documentation *************************************************************/
 
@@ -19,8 +19,6 @@
 
 /* Public prototypes *********************************************************/
 
-esp_err_t POSAPP_init(void);
+esp_err_t REGAPP_init(void);
 
-void POSAPP_getOrientation(double * pitch, double * roll);
-
-#endif /* __POSITION_APP_H__ */
+#endif /* __REGULATION_APP_H__ */

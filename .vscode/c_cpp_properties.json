@@ -5,11 +5,11 @@
             "${workspaceFolder}/esp-idf/components/**",
             "${workspaceFolder}/build/config",
             "${workspaceFolder}/main/inc",
-            "${workspaceFolder}/main/drivers/inc",
             "${workspaceFolder}/fwk/utils/inc",
             "${workspaceFolder}/fwk/drivers/inc",
             "${workspaceFolder}/fwk/hil/inc",
-            "${workspaceFolder}/fwk/apis/inc"
+            "${workspaceFolder}/fwk/apis/inc",
+            "${workspaceFolder}/fwk/services/inc"
         ],
         "myDefines":[
             "_DEBUG",

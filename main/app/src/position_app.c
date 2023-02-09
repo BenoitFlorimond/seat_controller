@@ -24,6 +24,7 @@
 #define POSAPP_INFO(fmt, ...)    ESP_LOGI(TASK_TAG, fmt, ##__VA_ARGS__)
 #define POSAPP_ERROR(fmt, ...)   ESP_LOGE(TASK_TAG, fmt, ##__VA_ARGS__)
 #define POSAPP_WARNING(fmt, ...) ESP_LOGW(TASK_TAG, fmt, ##__VA_ARGS__)
+#define POSAPP_DEBUG(fmt, ...)   ESP_LOGD(TASK_TAG, fmt, ##__VA_ARGS__)
 #define QUEUE_SIZE               (10)
 /* Hard conf */
 #define I2C_SDA_NUM              (26)
@@ -45,8 +46,8 @@ typedef struct {
 
 static QueueHandle_t _queueForPositioning  = NULL;
 static SemaphoreHandle_t _orientationMutex = NULL;
-static float _pitch                        = 0.0;
-static float _roll                         = 0.0;
+static double _pitch                       = 0.0;
+static double _roll                        = 0.0;
 
 /* Private prototypes ********************************************************/
 
@@ -59,21 +60,21 @@ static void _axisValueCbk(int16_t xAxis, int16_t yAxis, int16_t zAxis);
 static void _process(void* priv)
 {
     axisValues_struct_t axisValues = { 0 };
-    float pitch, roll, xAxis, yAxis, zAxis = 0.0;
+    double pitch, roll, xAxis, yAxis, zAxis = 0.0;
 
     OSUTILS_waitSystemStartup();
 
     for (;;) {
         xQueueReceive(_queueForPositioning, &axisValues, portMAX_DELAY);
 
-        /* Invert x and y and convert from mg to g (float) */
-        xAxis = (float)axisValues.yAxis / 1000.0;
-        yAxis = (float)axisValues.xAxis / 1000.0;
-        zAxis = (float)axisValues.zAxis / 1000.0;
+        /* Invert x and y and convert from mg to g (double) */
+        xAxis = (double)axisValues.yAxis / 1000.0;
+        yAxis = (double)axisValues.xAxis / 1000.0;
+        zAxis = (double)axisValues.zAxis / 1000.0;
         roll  = atan2(yAxis, zAxis) * 180.0 / M_PI;
         pitch = atan2((-xAxis), sqrt(yAxis * yAxis + zAxis * zAxis)) * 180.0 / M_PI;
 
-        POSAPP_INFO("X = %0.2f, Y = %0.2f, Z = %0.2f, pitch = %0.2f, roll = %0.2f", xAxis, yAxis, zAxis, pitch, roll);
+        POSAPP_DEBUG("X = %0.2f, Y = %0.2f, Z = %0.2f, pitch = %0.2f, roll = %0.2f", xAxis, yAxis, zAxis, pitch, roll);
 
         xSemaphoreTake(_orientationMutex, portMAX_DELAY);
         _pitch = pitch;
@@ -125,10 +126,14 @@ esp_err_t POSAPP_init(void)
     return ACCDRV_init(&acceleroApi, true, POLLING_PERIOD_MS, _axisValueCbk);
 }
 
-void POSAPP_getOrientation(float* pitch, float* roll)
+void POSAPP_getOrientation(double* pitch, double* roll)
 {
     xSemaphoreTake(_orientationMutex, portMAX_DELAY);
-    *pitch = _pitch;
-    *roll  = _roll;
+    if (pitch != NULL) {
+        *pitch = _pitch;
+    }
+    if (roll != NULL) {
+        *roll = _roll;
+    }
     xSemaphoreGive(_orientationMutex);
 }
