@@ -40,6 +40,7 @@
         "complex": "c",
         "numeric": "c",
         "ratio": "c",
-        "cstdlib": "c"
+        "cstdlib": "c",
+        "kconfig": "c"
     },
 }

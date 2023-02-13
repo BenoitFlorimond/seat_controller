@@ -1,19 +1,8 @@
-idf_component_register( SRCS            "main.c" 
-                                        "app/src/position_app.c"
-                                        "app/src/regulation_app.c"
-                                        "../fwk/utils/src/os_utils.c"
-                                        "../fwk/drivers/src/buttons_driver.c"
-                                        "../fwk/drivers/src/leds_driver.c"
-                                        "../fwk/drivers/src/accelerometer_driver.c"
-                                        "../fwk/drivers/src/brushed_motor_driver.c"
-                                        "../fwk/hil/src/lis2dw12_hil.c"
-                                        "../fwk/hil/src/hbridge_dir_hil.c"
-                                        "../fwk/apis/src/mcpwm_api.c"
-                                        "../fwk/services/src/pid_service.c"
-                        INCLUDE_DIRS    "inc"
-                                        "app/inc"
-                                        "../fwk/utils/inc"
-                                        "../fwk/drivers/inc"
-                                        "../fwk/apis/inc"
-                                        "../fwk/services/inc"
-                                        "../fwk/hil/inc")
+list(APPEND srcs "app/src/position_app.c")
+list(APPEND srcs "app/src/regulation_app.c")
+list(APPEND incdirs "app/inc")
+
+list(APPEND srcs "main.c")
+list(APPEND incdirs "inc")
+
+idf_component_register(SRCS "${srcs}" INCLUDE_DIRS "${incdirs}" REQUIRES fwk)
